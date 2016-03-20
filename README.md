@@ -2,10 +2,7 @@ echo Cookbook
 ==================
 
 This cookbook downloads .mp3 programs from echo of Moscow radio <br>
-Default version installed is latest available.
-
 Supported programs can be found at: http://echo.msk.ru/programs/ <br>
-
 
 Attributes
 ==================
@@ -18,8 +15,8 @@ Attributes
 | ['echo']['path'] | String | program's download destination | "#{ENV['HOMEPATH']}/Desktop/Radio/" |
 | ['echo']['arcPath'] | String | program's archive destination | "E:/LIBRARY/Audio/Radio_Echo/" |
 
+Suported Programs:
 ==================
-Suported programs:
 
 year2016/ <br>
 48minut/ <br>
@@ -33,12 +30,9 @@ netak/
 personalno/ <br>
 albac/ <br>
 svoi-glaza/ <br>
+cenapobedy/ <br>
 tochka/ <br>
 victory/ <br>
-cenapobedy/ <br>
-==================
-15 items
-==================
 
 Usage
 ==================
