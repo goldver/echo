@@ -25,7 +25,7 @@ if (response.code != "200")
 	return
 end
 body = response.read_body
- 
+
 # puts source
 tmp = body.split("\n")
 tmp = tmp.grep(/.mp3/)[0]

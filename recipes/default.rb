@@ -8,17 +8,17 @@
 #
 
 # Creates destination Directory on User Desktop
-
-# ruby_block "Creates dir on desktopon and on VDI" do
-    # block do
-        # FileUtils.mkdir_p node['echo']['path']
-    # end
-# end
 directory "#{node['echo']['path']}" do
   action :create
 end
 
-##include_recipe "echo::personalno"
+# ruby_block "Creates dir on Desktop and on VDI" do
+    # block do
+        # FileUtils.mkdir_p node['echo']['path']
+    # end
+# end
+
+#include_recipe "echo::personalno"
 include_recipe "echo::year2016"
 include_recipe "echo::albac"
 include_recipe "echo::sorokina"
