@@ -18,21 +18,21 @@ Attributes
 Suported Programs:
 ==================
 
-year2016/ <br>
-48minut/ <br>
-sorokina/ <br>
-vsetak/ <br>
-Diletanti/ <br>
-klinch/ <br>
-exit/ <br>
-naukafokus/ <br>
-netak/
-personalno/ <br>
-albac/ <br>
-svoi-glaza/ <br>
-cenapobedy/ <br>
-tochka/ <br>
-victory/ <br>
+* year2016/ <br>
+* 48minut/ <br>
+* sorokina/ <br>
+* vsetak/ <br>
+* Diletanti/ <br>
+* klinch/ <br>
+* exit/ <br>
+* naukafokus/ <br>
+* netak/
+* personalno/ <br>
+* albac/ <br>
+* svoi-glaza/ <br>
+* cenapobedy/ <br>
+* tochka/ <br>
+* victory/ <br>
 
 Usage
 ==================
