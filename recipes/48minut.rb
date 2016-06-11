@@ -13,7 +13,7 @@ mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
-proxy = URI.parse("#{node['echo']['proxy']}") 
+proxy = URI.parse(node['echo']['proxy']) 
 uri = URI.parse("#{node['echo']['source']}#{program}")
 http = Net::HTTP.new(uri.host,uri.port, proxy.host, proxy.port)
 response = http.request(Net::HTTP::Get.new(uri.request_uri))

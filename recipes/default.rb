@@ -8,7 +8,7 @@
 #
 
 # Creates destination Directory on User Desktop
-directory "#{node['echo']['path']}" do
+directory node['echo']['path'] do
   action :create
 end
 
