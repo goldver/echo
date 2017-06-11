@@ -49,7 +49,7 @@ cirTitleArr.each do |c|
 	c = c.force_encoding("ISO-8859-1").encode("UTF-8")
 	c = c.encode('ISO8859-1').force_encoding('UTF-8')
 	######
-	file_name = c.split(cirTitle)[1]
+	file_name = c.split(cirTitle)[0]
 	file_name = file_name.gsub(/[?:">]/, "")
 	file_name = file_name.strip
 	cirDivTitle.push(file_name)

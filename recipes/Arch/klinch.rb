@@ -6,14 +6,13 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-cirTitle = /глазами/
-
-program = 'svoi-glaza/'
+cirTitle = /— Клинч/
+program = 'klinch/'
 mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
-proxy = URI.parse(node['echo']['proxy']) 
+proxy = URI.parse(node['echo']['proxy'])
 uri = URI.parse("#{node['echo']['source']}#{program}")
 http = Net::HTTP.new(uri.host,uri.port, proxy.host, proxy.port)
 response = http.request(Net::HTTP::Get.new(uri.request_uri))
@@ -46,7 +45,7 @@ title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
 Chef::Log.info "##### The title is: #{title} ############"
 
-file_name = title.split(cirTitle)[1]
+file_name = title.split(cirTitle)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip
@@ -65,17 +64,19 @@ end
 
 if node['echo']['arcPath'] == nil
 # Do nothing
-else
-	folder = "Своими глазами/"
-	arcPath = "#{node['echo']['arcPath']}#{folder}"
+#else
+	#folder = "Клинч/"
+	#arcPath = "#{node['echo']['arcPath']}#{folder}"
 
-	remote_file "#{arcPath}#{file_name}.mp3" do
-	  source src
-	  action :create
-	  not_if {File.exist?("#{arcPath}#{file_name}.mp3")}
-	  ignore_failure true
-	end
+	#remote_file "#{arcPath}#{file_name}.mp3" do
+	  #source src
+	  #action :create
+	  #not_if {File.exist?("#{arcPath}#{file_name}.mp3")}
+	  #ignore_failure true
+	#end
 end
+
+
 
 
 

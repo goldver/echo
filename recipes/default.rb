@@ -19,21 +19,22 @@ end
 # end
 
 #include_recipe "echo::personalno"
-include_recipe "echo::year2016"
+
+include_recipe "echo::year2017"
 include_recipe "echo::albac"
 include_recipe "echo::sorokina"
-include_recipe "echo::exit"
 include_recipe "echo::tochka"
 
 include_recipe "echo::vsetak"
 include_recipe "echo::Diletanti"
-include_recipe "echo::naukafokus"
 include_recipe "echo::netak"
-include_recipe "echo::svoi-glaza"
 include_recipe "echo::victory"
 include_recipe "echo::cenapobedy"
 include_recipe "echo::48minut"
-include_recipe "echo::klinch"
+include_recipe "echo::96_pages"
+include_recipe "echo::vsetakplus"
+include_recipe "echo::sut"
+include_recipe "echo::code"
 
 ###################################################
 

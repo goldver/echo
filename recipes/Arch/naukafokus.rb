@@ -6,9 +6,10 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-cirTitle = /— 48 минут/
 
-program = '48minut/'
+cirTitle = /— Наука в фокусе/
+
+program = 'naukafokus/'
 mypath = node['echo']['path']
 
 require "net/http"
@@ -66,7 +67,7 @@ end
 if node['echo']['arcPath'] == nil
 # Do nothing
 else
-	folder = "48 Минут/"
+	folder = "Наука в фокусе/"
 	arcPath = "#{node['echo']['arcPath']}#{folder}"
 
 	remote_file "#{arcPath}#{file_name}.mp3" do
@@ -76,4 +77,8 @@ else
 	  ignore_failure true
 	end
 end
+
+
+
+
 

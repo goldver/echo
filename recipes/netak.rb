@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-cirTitle = /так/
+cyrTitle = /— Не так/ # cyrillic title
 
 program = 'netak/'
 mypath = node['echo']['path']
@@ -34,24 +34,24 @@ file = tmp.split(/"/)[1]
 
 # puts title in Cirillyc
 tmp = body.split("\n")
+
 strFirst = /http?:\/\/echo.msk.ru\/programs\/#{program}/
-strLast = /-echo/
+strLast = strLast = /-echo/
+
 tmpFirst = tmp.grep(strFirst) 
 tmpLast = tmpFirst.grep(strLast)[0]
+
 # Latinic row
 title = tmpLast.split(/e="/)[1]
 
 tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
 title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
-Chef::Log.info "##### The title is: #{title} ############"
-
-file_name = title.split(cirTitle)[1]
+file_name = title.split(cyrTitle)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip
-
-Chef::Log.info "##### The file_name is: #{file_name} ############"
+Chef::Log.info "##### The file_name4 is: #{file_name} ############"
 
 src = "#{file}"
 Chef::Log.info "##### The src is: #{src} ############"
@@ -66,7 +66,7 @@ end
 if node['echo']['arcPath'] == nil
 # Do nothing
 else
-	folder = "НЕ ТАК (2012-2016)/"
+	folder = "НЕ ТАК (2012-2017)/"
 	arcPath = "#{node['echo']['arcPath']}#{folder}"
 
 	remote_file "#{arcPath}#{file_name}.mp3" do
@@ -76,7 +76,6 @@ else
 	  ignore_failure true
 	end
 end
-
 
 
 

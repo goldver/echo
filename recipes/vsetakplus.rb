@@ -1,4 +1,4 @@
-#
+﻿#
 # Cookbook Name:: echo
 # Recipe:: default
 #
@@ -6,10 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+cirTitle = /— Все так +/
 
-cirTitle = /се/
-
-program = 'naukafokus/'
+program = 'vsetakplus/'
 mypath = node['echo']['path']
 
 require "net/http"
@@ -47,7 +46,7 @@ title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
 Chef::Log.info "##### The title is: #{title} ############"
 
-file_name = title.split(cirTitle)[1]
+file_name = title.split(cirTitle)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip
@@ -67,7 +66,7 @@ end
 if node['echo']['arcPath'] == nil
 # Do nothing
 else
-	folder = "Наука в фокусе/"
+	folder = "ВСЕ ТАК ПЛЮС/"
 	arcPath = "#{node['echo']['arcPath']}#{folder}"
 
 	remote_file "#{arcPath}#{file_name}.mp3" do
@@ -77,7 +76,6 @@ else
 	  ignore_failure true
 	end
 end
-
 
 
 

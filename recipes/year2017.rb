@@ -6,14 +6,15 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-cirTitle = /Ищем выход…/
-program = 'exit/'
+
+program = 'year2017/'
 mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
-proxy = URI.parse(node['echo']['proxy'])
+proxy = URI.parse(node['echo']['proxy']) 
 uri = URI.parse("#{node['echo']['source']}#{program}")
+Chef::Log.info "#### uri #{uri} ####"
 http = Net::HTTP.new(uri.host,uri.port, proxy.host, proxy.port)
 response = http.request(Net::HTTP::Get.new(uri.request_uri))
 response.code
@@ -45,7 +46,7 @@ title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
 Chef::Log.info "##### The title is: #{title} ############"
 
-file_name = title.split(cirTitle)[1]
+file_name = title.split(/">/)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip
@@ -61,6 +62,7 @@ remote_file "#{mypath}#{file_name}.mp3" do
   not_if {File.exist?("#{mypath}#{file_name} + .mp3")}
   ignore_failure true
 end
+
 
 
 

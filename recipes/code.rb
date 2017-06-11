@@ -6,9 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-cirTitle = /— 48 минут/
 
-program = '48minut/'
+program = 'code/'
 mypath = node['echo']['path']
 
 require "net/http"
@@ -46,7 +45,7 @@ title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
 Chef::Log.info "##### The title is: #{title} ############"
 
-file_name = title.split(cirTitle)[0]
+file_name = title.split(/">/)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip
@@ -63,17 +62,8 @@ remote_file "#{mypath}#{file_name}.mp3" do
   ignore_failure true
 end
 
-if node['echo']['arcPath'] == nil
-# Do nothing
-else
-	folder = "48 Минут/"
-	arcPath = "#{node['echo']['arcPath']}#{folder}"
 
-	remote_file "#{arcPath}#{file_name}.mp3" do
-	  source src
-	  action :create
-	  not_if {File.exist?("#{arcPath}#{file_name}.mp3")}
-	  ignore_failure true
-	end
-end
+
+
+
 
