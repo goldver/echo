@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-cirTitle = /— Все так/
+cyrTitle = /— Все так/
 
 program = 'vsetak/'
 mypath = node['echo']['path']
@@ -46,7 +46,7 @@ title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
 Chef::Log.info "##### The title is: #{title} ############"
 
-file_name = title.split(cirTitle)[0]
+file_name = title.split(cyrTitle)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip

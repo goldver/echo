@@ -6,9 +6,9 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+
 program = 'personalno/'
-path = "C:/Users/MCOMP/Desktop/Radio/"
-cirTitle = /мнение/
+mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
@@ -17,54 +17,49 @@ uri = URI.parse("#{node['echo']['source']}#{program}")
 http = Net::HTTP.new(uri.host,uri.port, proxy.host, proxy.port)
 response = http.request(Net::HTTP::Get.new(uri.request_uri))
 response.code
+
+Chef::Log.info "#### #{response.code} ####"
+
+if (response.code != "200")
+	Chef::Log.error  "### Connection failed ###"
+	return
+end
 body = response.read_body
 
+# puts source
 tmp = body.split("\n")
-tmp = tmp.grep(/.mp3/)
-tmp = tmp.grep(/osoboe/)
+tmp = tmp.grep(/.mp3/)[0]
+file = tmp.split(/"/)[1]
 
-urls = Array.new 
-tmp.each do |c|
-	startHttp = c.split('a href="')[1]
-	endHttp = startHttp.split('" c')[0]
-	urls.push(endHttp)
-end
-
+# puts title in Cirillyc
 tmp = body.split("\n")
 strFirst = /http?:\/\/echo.msk.ru\/programs\/#{program}/
-strLast = /-echo\/" data-title="/
+strLast = /-echo/
 tmpFirst = tmp.grep(strFirst) 
-tmpLast = tmpFirst.grep(strLast)
+tmpLast = tmpFirst.grep(strLast)[0]
+# Latinic row
+title = tmpLast.split(/e="/)[1]
 
-cirTitleArr = Array.new 
-tmpLast.each do |c|
-	startTitle = c.split(/e="/)[1]
-	endTitle = startTitle.split('">')[0]
-	cirTitleArr.push(endTitle)
-end
+tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
+title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
-cirDivTitle = Array.new 
-cirTitleArr.each do |c|
-	######
-	c = c.force_encoding("ISO-8859-1").encode("UTF-8")
-	c = c.encode('ISO8859-1').force_encoding('UTF-8')
-	######
-	file_name = c.split(cirTitle)[0]
-	file_name = file_name.gsub(/[?:">]/, "")
-	file_name = file_name.strip
-	cirDivTitle.push(file_name)
-end
+Chef::Log.info "##### The title is: #{title} ############"
 
-len = urls.length
-i=0
-while (i < len) do
-	remote_file "#{path}#{cirDivTitle[i]}.mp3" do
-		source urls[i]
-		action :create
-		not_if {File.exists?("#{path}#{cirDivTitle[i]}.mp3")}
-		ignore_failure true
-	end
-	i = i + 1
+file_name = title.split(/">/)[0]
+file_name = file_name.gsub(/[?:">]/, "")
+file_name = file_name.gsub(/\s+/, ' ')
+file_name = file_name.strip
+
+Chef::Log.info "##### The file_name is: #{file_name} ############"
+
+src = "#{file}"
+Chef::Log.info "##### The src is: #{src} ############"
+
+remote_file "#{mypath}#{file_name}.mp3" do
+  source src
+  action :create
+  not_if {File.exist?("#{mypath}#{file_name} + .mp3")}
+  ignore_failure true
 end
 
 

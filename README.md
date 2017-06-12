@@ -18,21 +18,22 @@ Attributes
 Suported Programs:
 ==================
 
-* year2016/ <br>
-* 48minut/ <br>
+* personalno/ <br>
+* year2017/ <br>
+* albac/ <br>
 * sorokina/ <br>
+* tochka/ <br>
 * vsetak/ <br>
 * Diletanti/ <br>
-* klinch/ <br>
-* exit/ <br>
 * naukafokus/ <br>
 * netak/
-* personalno/ <br>
-* albac/ <br>
-* svoi-glaza/ <br>
-* cenapobedy/ <br>
-* tochka/ <br>
 * victory/ <br>
+* cenapobedy/ <br>
+* 48minut/ <br>
+* 96_pages/ <br>
+* vsetakplus/ <br>
+* sut/ <br>
+* code/ <br>
 
 Usage
 ==================

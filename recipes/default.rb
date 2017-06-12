@@ -18,13 +18,11 @@ end
     # end
 # end
 
-#include_recipe "echo::personalno"
-
+include_recipe "echo::personalno"
 include_recipe "echo::year2017"
 include_recipe "echo::albac"
 include_recipe "echo::sorokina"
 include_recipe "echo::tochka"
-
 include_recipe "echo::vsetak"
 include_recipe "echo::Diletanti"
 include_recipe "echo::netak"
