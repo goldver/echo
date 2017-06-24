@@ -31,6 +31,10 @@ tmp = body.split("\n")
 tmp = tmp.grep(/.mp3/)[0]
 file = tmp.split(/"/)[1]
 
+# Grep date
+file_date_tmp = file.split(/d\//)[1]
+file_date = file_date_tmp.split(/-c/)[0]
+
 # puts title in Cirillyc
 tmp = body.split("\n")
 strFirst = /http?:\/\/echo.msk.ru\/programs\/#{program}/
@@ -48,7 +52,7 @@ Chef::Log.info "##### The title is: #{title} ############"
 file_name = title.split(/">/)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
-file_name = file_name.strip
+file_name = file_name.strip + "-#{file_date}"
 
 Chef::Log.info "##### The file_name is: #{file_name} ############"
 
