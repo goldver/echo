@@ -36,17 +36,20 @@ tmp = body.split("\n")
 
 tmp = tmp.grep(/.mp3/)[0]
 file = tmp.split(/"/)[1]
-Chef::Log.info "#### The file is #{file} ####"
+
+# Grep date
+file_date_tmp = file.split(/d\//)[1]
+file_date = file_date_tmp.split(/-c/)[0]
 
 # puts title in Cirillyc
 tmp = body.split("\n")
 strFirst = /https?:\/\/echo.msk.ru\/programs\/#{program}/
+Chef::Log.info "##### The strFirst is: #{strFirst} ############"
 strLast = /-echo/
 tmpFirst = tmp.grep(strFirst) 
 tmpLast = tmpFirst.grep(strLast)[0]
 # Latinic row
 title = tmpLast.split(/e="/)[1]
-Chef::Log.info "#### The title is #{title} ####"
 
 tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
 title = tmp.encode('ISO8859-1').force_encoding('UTF-8')

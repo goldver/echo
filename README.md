@@ -32,7 +32,7 @@ Suported Programs:
 * 48minut/ <br>
 * 96_pages/ <br>
 * vsetakplus/ <br>
-* sut/ <br>
+* sut/ ==> special code for gsub date <br>
 * code/ ==> special code for gsub date <br>
 
 Usage
