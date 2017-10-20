@@ -33,7 +33,7 @@ Suported Programs:
 * 96_pages/ <br>
 * vsetakplus/ <br>
 * sut/ <br>
-* code/ <br>
+* code/ ==> special code for gsub date <br>
 
 Usage
 ==================
@@ -42,6 +42,10 @@ Usage
 Just include 'echo' in your cookbook:
 
     include_recipe 'echo'
+
+Notes:
+===================
+Windows Task Scheduling: Radio - Echo
 
 Contributing
 ------------

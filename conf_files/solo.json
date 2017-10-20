@@ -1,0 +1,9 @@
+{
+	"echo": {
+		"proxy": " "
+	},
+	
+	"run_list": [ 
+		"recipe[echo]"
+    ]
+}

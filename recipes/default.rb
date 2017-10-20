@@ -31,7 +31,7 @@ include_recipe "echo::cenapobedy"
 include_recipe "echo::48minut"
 include_recipe "echo::96_pages"
 include_recipe "echo::vsetakplus"
-include_recipe "echo::sut"
+##include_recipe "echo::sut"
 include_recipe "echo::code"
 
 ###################################################

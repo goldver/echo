@@ -12,9 +12,14 @@ mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
+require 'openssl'
+
 proxy = URI.parse(node['echo']['proxy']) 
 uri = URI.parse("#{node['echo']['source']}#{program}")
+
 http = Net::HTTP.new(uri.host,uri.port, proxy.host, proxy.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 response = http.request(Net::HTTP::Get.new(uri.request_uri))
 response.code
 
@@ -28,21 +33,20 @@ body = response.read_body
 
 # puts source
 tmp = body.split("\n")
+
 tmp = tmp.grep(/.mp3/)[0]
 file = tmp.split(/"/)[1]
-
-# Grep date
-file_date_tmp = file.split(/d\//)[1]
-file_date = file_date_tmp.split(/-s/)[0]
+Chef::Log.info "#### The file is #{file} ####"
 
 # puts title in Cirillyc
 tmp = body.split("\n")
-strFirst = /http?:\/\/echo.msk.ru\/programs\/#{program}/
+strFirst = /https?:\/\/echo.msk.ru\/programs\/#{program}/
 strLast = /-echo/
 tmpFirst = tmp.grep(strFirst) 
 tmpLast = tmpFirst.grep(strLast)[0]
 # Latinic row
 title = tmpLast.split(/e="/)[1]
+Chef::Log.info "#### The title is #{title} ####"
 
 tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
 title = tmp.encode('ISO8859-1').force_encoding('UTF-8')

@@ -1,7 +1,7 @@
 #[BASIC]
 #program's Url  
 #The default value is: 'http://echo.msk.ru/programs/'
-default['echo']['source'] = 'http://echo.msk.ru/programs/'
+default['echo']['source'] = 'https://echo.msk.ru/programs/'
 
 #Destination path where files will be downloaded
 #Default value is: "#{ENV['HOMEPATH']}/Desktop/Radio/"

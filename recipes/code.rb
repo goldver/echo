@@ -12,9 +12,16 @@ mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
+require 'openssl'
+
+mypath = node['echo']['path']
+
 proxy = URI.parse(node['echo']['proxy']) 
 uri = URI.parse("#{node['echo']['source']}#{program}")
+
 http = Net::HTTP.new(uri.host,uri.port, proxy.host, proxy.port)
+http.use_ssl = true
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 response = http.request(Net::HTTP::Get.new(uri.request_uri))
 response.code
 
@@ -28,8 +35,10 @@ body = response.read_body
 
 # puts source
 tmp = body.split("\n")
+
 tmp = tmp.grep(/.mp3/)[0]
 file = tmp.split(/"/)[1]
+Chef::Log.info "#### The file is #{file} ####"
 
 # Grep date
 file_date_tmp = file.split(/d\//)[1]
@@ -37,7 +46,7 @@ file_date = file_date_tmp.split(/-c/)[0]
 
 # puts title in Cirillyc
 tmp = body.split("\n")
-strFirst = /http?:\/\/echo.msk.ru\/programs\/#{program}/
+strFirst = /https?:\/\/echo.msk.ru\/programs\/#{program}/
 strLast = /-echo/
 tmpFirst = tmp.grep(strFirst) 
 tmpLast = tmpFirst.grep(strLast)[0]
@@ -65,9 +74,3 @@ remote_file "#{mypath}#{file_name}.mp3" do
   not_if {File.exist?("#{mypath}#{file_name} + .mp3")}
   ignore_failure true
 end
-
-
-
-
-
-
