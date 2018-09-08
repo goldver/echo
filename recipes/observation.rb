@@ -1,20 +1,18 @@
 #
 # Cookbook Name:: echo
-# Recipe:: default
+# Recipe:: observation
 #
 # Copyright 2015, Goldver
 #
 # All rights reserved - Do Not Redistribute
 #
-
-program = 'year2017/'
-
+cyrTitle = /— Будем наблюдать/
+program = 'observation/'
+mypath = node['echo']['path']
 
 require "net/http"
 require "uri"
 require 'openssl'
-
-mypath = node['echo']['path']
 
 proxy = URI.parse(node['echo']['proxy']) 
 uri = URI.parse("#{node['echo']['source']}#{program}")
@@ -50,13 +48,12 @@ tmpLast = tmpFirst.grep(strLast)[0]
 title = tmpLast.split(/e="/)[1]
 Chef::Log.info "#### The title is #{title} ####"
 
-
 tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
 title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
 Chef::Log.info "##### The title is: #{title} ############"
 
-file_name = title.split(/">/)[0]
+file_name = title.split(cyrTitle)[0]
 file_name = file_name.gsub(/[?:">]/, "")
 file_name = file_name.gsub(/\s+/, ' ')
 file_name = file_name.strip
@@ -69,10 +66,9 @@ Chef::Log.info "##### The src is: #{src} ############"
 remote_file "#{mypath}#{file_name}.mp3" do
   source src
   action :create
-  not_if {File.exist?("#{mypath}#{file_name} + .mp3")}
+  not_if {File.exist?("#{mypath}#{file_name}.mp3")}
   ignore_failure true
 end
-
 
 
 

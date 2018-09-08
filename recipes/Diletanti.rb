@@ -8,7 +8,7 @@
 #
 cyrTitle = /— Дилетанты/
 
-program = 'Diletanti/'
+program = 'diletanti/'
 mypath = node['echo']['path']
 
 require "net/http"

@@ -18,21 +18,21 @@ end
     # end
 # end
 
-include_recipe "echo::personalno"
-include_recipe "echo::year2017"
-include_recipe "echo::albac"
-include_recipe "echo::sorokina"
-include_recipe "echo::tochka"
-include_recipe "echo::vsetak"
-include_recipe "echo::Diletanti"
-include_recipe "echo::netak"
-include_recipe "echo::victory"
-include_recipe "echo::cenapobedy"
-include_recipe "echo::48minut"
-include_recipe "echo::96_pages"
-include_recipe "echo::vsetakplus"
-include_recipe "echo::sut"
-include_recipe "echo::code"
+include_recipe "echo::observation"
+# include_recipe "echo::personalno"
+# include_recipe "echo::albac"
+# include_recipe "echo::sorokina"
+# include_recipe "echo::tochka"
+# include_recipe "echo::vsetak"
+# include_recipe "echo::diletanti"
+# include_recipe "echo::netak"
+# include_recipe "echo::victory"
+# include_recipe "echo::cenapobedy"
+# include_recipe "echo::48minut"
+# include_recipe "echo::96_pages"
+# include_recipe "echo::vsetakplus"
+# include_recipe "echo::sut"
+# include_recipe "echo::code"
 
 ###################################################
 
