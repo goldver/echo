@@ -51,36 +51,38 @@ tmpLast = tmpFirst.grep(strLast)[0]
 title = tmpLast.split(/e="/)[1]
 Chef::Log.info "#### The title is #{title} ####"
 
-tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
-title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
+unless title.nil? || title == 0
+	tmp = title.force_encoding("ISO-8859-1").encode("UTF-8")
+	title = tmp.encode('ISO8859-1').force_encoding('UTF-8')
 
-file_name = title.split(cyrTitle)[0]
-file_name = file_name.gsub(/[?:">]/, "")
-file_name = file_name.gsub(/\s+/, ' ')
-file_name = file_name.strip
-Chef::Log.info "##### The file_name4 is: #{file_name} ############"
+	file_name = title.split(cyrTitle)[0]
+	file_name = file_name.gsub(/[?:">]/, "")
+	file_name = file_name.gsub(/\s+/, ' ')
+	file_name = file_name.strip
+	Chef::Log.info "##### The file_name4 is: #{file_name} ############"
 
-src = "#{file}"
-Chef::Log.info "##### The src is: #{src} ############"
+	src = "#{file}"
+	Chef::Log.info "##### The src is: #{src} ############"
 
-remote_file "#{mypath}#{file_name}.mp3" do
-  source src
-  action :create
-  not_if {File.exist?("#{mypath}#{file_name} + .mp3")}
-  ignore_failure true
-end
-
-if node['echo']['arcPath'] == nil
-# Do nothing
-else
-	folder = "НЕ ТАК (2012-2017)/"
-	arcPath = "#{node['echo']['arcPath']}#{folder}"
-
-	remote_file "#{arcPath}#{file_name}.mp3" do
+	remote_file "#{mypath}#{file_name}.mp3" do
 	  source src
 	  action :create
-	  not_if {File.exist?("#{arcPath}#{file_name}.mp3")}
+	  not_if {File.exist?("#{mypath}#{file_name} + .mp3")}
 	  ignore_failure true
+	end
+
+	if node['echo']['arcPath'] == nil
+	# Do nothing
+	else
+		folder = "НЕ ТАК (2012-2017)/"
+		arcPath = "#{node['echo']['arcPath']}#{folder}"
+
+		remote_file "#{arcPath}#{file_name}.mp3" do
+		  source src
+		  action :create
+		  not_if {File.exist?("#{arcPath}#{file_name}.mp3")}
+		  ignore_failure true
+		end
 	end
 end
 
